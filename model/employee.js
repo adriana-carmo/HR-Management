@@ -2,11 +2,19 @@
 var orm = require("../config/orm.js");
 
 var employee = {
+    //all employee
   all: function(cb) {
     orm.all("employee", function(res) {
       cb(res);
     });
   },
+  // only managers
+  manager: function(cb) {
+    orm.all("manage", function(res) {
+      cb(res);
+    });
+  },
+  
   // The variables cols and vals are arrays.
   create: function(cols, vals, cb) {
     orm.create("employee", cols, vals, function(res) {
