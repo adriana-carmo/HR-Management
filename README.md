@@ -5,7 +5,7 @@
 - [Installation](#Installation)
 - [Run](#Run)
 - [Database](#Database)
-- [Screen](#Screen)
+- [Screens](#Screens)
 
 ## Description
 This interface is known as **C**ontent **M**anagement **S**ystems. This is a solution to manage the employees of a company using node, inquirer and MySQL.
@@ -27,7 +27,7 @@ node management.js
 ## Database
 ![Tables Object](Assets/schema.png)
 
-## Screen
+## Screens
 ** Program start with menu below and each menu there is a sub-menu:
         *** Manage Employee
         *** Manage Role
@@ -35,39 +35,44 @@ node management.js
         *** Exit
 ![Start](Assets/start_app.png)
 
-** Department Session there is a menu with options below:
-        *** View all list of departments
-        *** Add Department
-        *** Update Department
-        *** Remove Department
-        *** Return main menu
+**Department Session there is a menu with the options below:**
+        > View all list of departments
+        > Add Department
+        > Update Department
+        > Remove Department
+        > Return main menu
 
+*Department Menu*
 ![Department Menu](Assets/department_menu.png)
 
+*Department List*
 ![Department List](Assets/department_list.png)
 
-** Role Session there is a menu with options below:
-        *** View all list of roles
-        *** Add Department
-        *** Update Department
-        *** Remove Department
-        *** Return main menu
+**Role Session there is a menu with the options below:**
+        > View all list of roles
+        > Add Department
+        > Update Department
+        > Remove Department
+        > Return main menu
 
-
+*Role Menu*
 ![Role Menu](Assets/role_menu.png)
 
+*List of roles*
 ![List of roles](Assets/role_list.png)
 
-** Employee Session there is a menu with options below:
-        *** View all list of employees
-        *** View all list of managers
-        *** Add Department
-        *** Update Department
-        *** Remove Department
-        *** Return main menu
+**Employee Session there is a menu with the options below:**
+        > View all list of employees
+        > View all list of managers
+        > Add Department
+        > Update Department
+        > Remove Department
+        > Return main menu
 
+*List of Employees and Managers*
 ![List of Employee](Assets/employee_list.png)
 
+*Add Employee*
 ![Add Employee](Assets/employee_add.png)
 
 
