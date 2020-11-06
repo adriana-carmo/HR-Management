@@ -10,6 +10,9 @@ var DepartmentArray = [];
 var RoleArray = [];
 var ManagerEmployee = [];
 
+/*** 
+ Title of console
+***/
 function title(){
 
     art.font("HR-Management", "Doom", async (err, renderer) => {
@@ -20,10 +23,11 @@ function title(){
     
 }
 
-
+/***
+ Starting console
+***/
 function promptUser(){
 
-    
     choiceArray = [];
     DepartmentArray = [];
     RoleArray = [];
@@ -71,7 +75,7 @@ function promptDepartment(){
         {
             type : "list",
             message : "What would you like to do in Department session?",
-            choices : ["View all list of department",
+            choices : ["View all list of departments",
                 "Add Department",
                 "Update Department",
                 "Remove Department",
@@ -87,7 +91,7 @@ function promptDepartment(){
                
             break;
 
-            case "View all list of department":
+            case "View all list of departments":
                 // access database and show department
                  department.all(async function(data) {
                      console.table(data);
@@ -133,7 +137,6 @@ function promptDepartment(){
                                         await promptUser();
                                     }
                                 });
-                                process.exit();
                             break;
                         }
                     })
@@ -197,7 +200,7 @@ function promptRole(){
         {
             type : "list",
             message : "What would you like to do in Role session?",
-            choices : ["View all list of role",
+            choices : ["View all list of roles",
                 "Add Role",
                 "Update Role",
                 "Remove Role",
@@ -213,7 +216,7 @@ function promptRole(){
                
             break;
 
-            case "View all list of role":
+            case "View all list of roles":
                 // access database and show role
                  role.all(async function(data) {
                      console.table(data);
@@ -260,7 +263,6 @@ function promptRole(){
                                         await promptUser();
                                     }
                                 });
-                                //process.exit();
                             break;
                         }
                     })
@@ -356,7 +358,8 @@ function promptEmployee(){
         {
             type : "list",
             message : "What would you like to do in Employee session?",
-            choices : ["View all list of employee",
+            choices : ["View all list of employees",
+                "View all list of managers",
                 "Add Employee",
                 "Update Employee",
                 "Remove Employee",
@@ -372,9 +375,17 @@ function promptEmployee(){
                
             break;
 
-            case "View all list of employee":
+            case "View all list of employees":
                 // access database and show employee
                  employee.all(async function(data) {
+                     console.table(data);
+                     await promptUser()
+                })    
+            break;
+
+            case "View all list of managers":
+                // access database and show employee
+                 employee.manager(async function(data) {
                      console.table(data);
                      await promptUser()
                 })    
@@ -420,7 +431,6 @@ function promptEmployee(){
                                         await promptUser();
                                     }
                                 });
-                                process.exit();
                             break;
                         }
                     })
@@ -483,7 +493,7 @@ function SetEmployee(id){
         choices: RoleArray
       },
       {
-        message: "What is the employees manager's ID?",
+        message: "Select the manager responsible for the employee or None for the manager's record",
         type: "list",
         name: "managerId",
         choices: ManagerEmployee
@@ -497,7 +507,6 @@ function SetEmployee(id){
         var manageId = null;
         if(answer.managerId  != "None"){
             var getId = (answer.managerId).split(" Name: ");
-            console.log(getId[0])
             manageId = getId[0];
         }  
 
