@@ -42,7 +42,7 @@ function objToSql(ob) {
 
 // Object for all our SQL statement functions.
 var orm = {
-  // Select data from table
+  // Select data from tables: Role / Department / Employee
   all: function(tableInput, cb) {
     
     if(tableInput == "role")
@@ -53,15 +53,20 @@ var orm = {
       queryString += " t1.id_department = t2.id_department";
     }
     else if(tableInput == "employee"){
-      var queryString = "SELECT t.id_employee, t.first_name, t.last_name, id_manager, t1.title, t1.salary, t2.name_department";
+
+      var queryString = "SELECT t.id_employee, Concat(t.first_name, ' ',t.last_name) as name, Concat(t3.first_name, ' ', t3.last_name) as manager, t1.title, t1.salary, t2.name_department ";
       queryString += " FROM " + tableInput + " t ";
-      queryString += " inner join role  t1 on "; 
+      queryString += " inner join role  t1 on ";
       queryString += " t.id_role = t1.id_role ";
-      queryString += " inner join department t2 on "; 
-      queryString += " t.id_department = t2.id_department ";
+      queryString += " inner join department t2 on ";
+      queryString += " t1.id_department = t2.id_department ";
+      queryString += " left outer join employee t3 on ";
+      queryString += " t.id_manager = t3.id_employee ";
+     // queryString += " order by name; ";
+      
     }
     else if(tableInput == "manage"){
-      var queryString = "SELECT t.id_employee, t.first_name, t.last_name, id_manager, t1.title, t1.salary, t2.name_department";
+      var queryString = "SELECT t.id_employee, Concat(t.first_name, ' ',t.last_name) as name, t1.title, t1.salary, t2.name_department";
       queryString += " FROM employee t ";
       queryString += " inner join role  t1 on ";
       queryString += " t.id_role = t1.id_role ";
@@ -84,7 +89,7 @@ var orm = {
   // Insert data into the table
   create: function(table, cols, vals, cb) {
     var queryString = "INSERT INTO " + table;
-
+   
     queryString += " (";
     queryString += cols.toString();
     queryString += ") ";
@@ -109,7 +114,6 @@ var orm = {
     queryString += " WHERE ";
     queryString += condition;
 
-    //console.log(queryString);
     connection.query(queryString, function(err, result) {
       if (err) {
         throw err;
@@ -126,7 +130,6 @@ var orm = {
     queryString += " WHERE ";
     queryString += condition;
 
-    //console.log(queryString);
     connection.query(queryString, function(err, result) {
       if (err) {
         throw err;
